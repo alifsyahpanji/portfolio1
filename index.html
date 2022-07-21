@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alifsyah Studio</title>
+
+    <!--Load Library Start-->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!--Load Library End-->
+
+    <!--Load External Link Start-->
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/data.js"></script>
+    <!--Load External Link End-->
+
+
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+
+    <script type="text/babel">
+
+        /* Function Menu Dropdown */
+        function on() {
+            var offtogle = '<button class="toglebtn" onclick="off()"><p class="toglefont" >Close</p></button>';
+            document.getElementById("togle").innerHTML = offtogle;
+            document.getElementById("mobile").className = "onmobile";
+
+        }
+
+        function off() {
+            var ontogle = '<button class="toglebtn" onclick="on()"><p class="toglefont" >Menu</p></button>';
+            document.getElementById("togle").innerHTML = ontogle;
+            document.getElementById("mobile").className = "offmobile";
+        }
+
+        /* Header */
+        function Header() {
+            return (
+                <header>
+                    <Navbar />
+                    <Jumbotron />
+                </header>
+            );
+        }
+
+        /* Navbar */
+        function Navbar() {
+            return (
+                <nav>
+
+                    <div id="bgnav">
+                        <div id="navmenu">
+                            <div className="navpc"><a href="#about">About</a></div>
+                            <div className="navpc"><a href="#service">Service</a></div>
+                            <div id="togle"><button className="toglebtn" onClick={on}>
+                                <p className="toglefont">Menu</p>
+                            </button></div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div id="mobile" className="offmobile">
+                        <div id="onoff">
+                            <div className="navm"><a href="#about">About</a></div>
+                            <div className="navm"><a href="#service">Service</a></div>
+                        </div>
+                    </div>
+
+                </nav>
+            );
+        }
+
+
+        function Jumbotron() {
+            return (
+                <div id="jumbotron">
+                    <div id="jumbotrontext">
+                        <p className="title">{jumbotron.title}</p>
+                        <p className="description">{jumbotron.description}</p>
+                    </div>
+                </div>
+            );
+        }
+
+        /* Main */
+        function Main() {
+            return (
+                <main>
+                    <Content />
+                    <Aside />
+
+
+                </main>
+            );
+        }
+
+        /* Content */
+        function Content() {
+            return (
+                <div id="content">
+                    {
+                        article.map((a) => (
+                            <Article id={a.id} title={a.title} image={a.image}
+                                description={a.description} />
+                        ))
+                    }
+
+                </div>
+            );
+        }
+
+
+        /* Article */
+        function Article(props) {
+            return (
+                <article id={props.id} className="card">
+                    <div className="titlearticle">
+                        <h1>{props.title}</h1>
+                    </div>
+
+                    <div className="descriptionarticle">
+                        <img src={props.image} className="featured-image" />
+                        <br />
+                        <br />
+                        <p>{props.description}</p>
+
+                    </div>
+                </article>
+            );
+        }
+
+
+
+        /* Aside */
+        function Aside() {
+            return (
+                <aside className="card">
+                    <div className="titlearticle">
+                        <h3>{aside.title}</h3>
+                    </div>
+
+                    <div>
+                        <img src={aside.image} className="asideimg" />
+                    </div>
+                </aside>
+            );
+        }
+
+        /* Footer */
+        function Footer() {
+            return (
+                <footer>
+                    <h4>&copy; Copyright Alifsyah Panji 2022</h4>
+                </footer>
+            );
+        }
+
+
+
+        /* App */
+        function App() {
+            return (
+                <div id="app">
+                    <Header />
+                    <Main />
+                    <Footer />
+                </div>
+            );
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+
+
+
+
+    </script>
+
+</body>
+
+</html>
